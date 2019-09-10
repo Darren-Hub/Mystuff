@@ -1,0 +1,63 @@
+import random
+import sys
+
+Name = input("Enter you name: ")
+print("________________________________________________________________")
+print("Welcome " + Name + " to the hangman hope you prepared to play :) ")
+print("________________________________________________________________")
+print()
+
+def MyHangmanGame():
+    Words_Dict = {"How many months have 28 days?\n ": "All",
+                  "What's full of holes but still holds water?\n ": "Sponge",
+                  "What is easy to get into but hard to get out of?\n ": "Trouble",
+                  "I'm tall when I am young and short when old.\n What am I?\n ": "Candle",
+                  "What falls but does not break.\n and what breaks but does not fall?\n ": "Night and day",
+                  "The more you take the more you leave behind?\n ": "Footsteps",
+                  "What belongs to you but other people get use to?\n ": "Name",
+                  "What can be easily broke but not touch?\n ": "Promise",
+                  "What can you catch but not throw?\n ": "Flu"}
+
+    Words_value = list(Words_Dict.values())
+    Words_key = list(Words_Dict.keys())
+
+    Rand_Nu = random.randint(0, len(Words_value) - 1)
+
+    Word = Words_value[Rand_Nu]
+    Hint = Words_key[Rand_Nu]
+
+    Guesses = ''
+    Guess_Count = 3
+
+    while Guess_Count < 4:
+        Guesses = input(Hint + " Guess a word: ")
+        if Guesses == Word:
+            print()
+            print("******************************************************************")
+            print("Congratulations you answered corrected and skipped you sentence :)")
+            print("******************************************************************")
+            print()
+            TryAgain()
+            break
+        if Guesses != Word and Guess_Count > 0:
+            Guess_Count -= 1
+            print("You just lost a turn!")
+            print()
+        if Guess_Count == 0:
+            print("**************************")
+            print("You just killed yourself!")
+            print("***************************")
+            print()
+            TryAgain()
+            break
+
+def TryAgain():
+    choice = int(input("Do you wish to continue playing specify via number to play?\n"
+                       "[1] Play again\n"
+                       "[2] to exit the game\n"))
+    if choice == 1:
+        MyHangmanGame()
+    if choice == 2:
+        sys.exit()
+
+MyHangmanGame()

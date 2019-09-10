@@ -1,0 +1,10 @@
+from googletrans import Translator
+My_Translator = Translator()
+My_Sentence = input("Insert the sentence you want to translate: \n")
+get_lang = input("Insert the language you prefer via abreviation: \n"
+		 "1.English = en \n"
+    		 "2.Afrikaans = af \n"
+		 "3.Xhosa = xh \n"
+	 	 "4.Etc \n")
+My_Translate = My_Translator.translate(My_Sentence, dest=get_lang)
+print(My_Translate.text)
